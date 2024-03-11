@@ -26,6 +26,9 @@ public class MemoryManager {
 		// TODO Auto-generated method stub
 	}
 	private void writeUsingFirstFit(Process p) {
+		for(int f = 0; f < p.getSizeInMemory(); f++) {
+			System.out.println();
+		}
 		int actualSize = 0;
 		System.out.println("tamanho em memoria: "+ p.getSizeInMemory() + " | id: " +p.getId() );
 		for( int i = 0; i < memory.length ; i++) {
