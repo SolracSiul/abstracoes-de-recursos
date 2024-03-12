@@ -8,20 +8,25 @@ import java.util.UUID;
 import so.memory.AdressMemory;
 
 public class Process {
+	private String name;
 	private String id;
-	//tamanho da memoria
-	private int sizeInMemory;
-	private int timeToExecute;
+	private int sizeInMemory; //tamanho da memoria
+	private AdressMemory adress;
+
+
+	public static final List<Integer> numbers = Arrays.asList(1, 2, 4, 6, 10, 20, 50, 100);
+
+	public List<String> processNames = Arrays.asList("Chrome", "Discord", "Firefox", "Steam", "Netflix", "LOL", "Valorant");
+
+	/*	private int timeToExecute;
 	private int priority;
 	private List<Process> processes;
-	private int instructions;
-	private AdressMemory adress;
+	private int instructions;*/
 	
 	public Process() {
-		this.id = UUID.randomUUID().toString();
-		Random r = new Random();
-		List<Integer> numbers = Arrays.asList(1,2,4,6,10,20,50,100);
-		this.sizeInMemory = numbers.get(r.nextInt(numbers.size()));
+		this.id = generateId(); //Gerando id
+		this.sizeInMemory = generateRandomNumber();
+		this.name = generateCustomName();
 	}
 
 	public String getId() {
@@ -46,5 +51,26 @@ public class Process {
 
 	public void setAdress(AdressMemory adress) {
 		this.adress = adress;
+	}
+
+	private int generateRandomNumber(){
+		Random r = new Random();
+		return numbers.get(r.nextInt(numbers.size()));
+	}
+	private String generateCustomName() {
+		Random r = new Random();
+        return processNames.get(r.nextInt(processNames.size()));
+	}
+
+	private String generateId(){
+		return UUID.randomUUID().toString();
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

@@ -7,30 +7,32 @@ import so.schedule.Schedule;
 
 import java.util.Objects;
 
-import so.Process;
-
 public class SystemOperation {
-
-	public static MemoryManager mm;
-	public static CpuManager cm;
-	public static Schedule schedule;
+	public MemoryManager mm;
+	public CpuManager cm;
+	public Schedule schedule;
 	
-	public static Object systemCall(SystemCallType type, Process p) {
-		if(type.equals(SystemCallType.CREATE_PROCESS)) {
-			if(Objects.isNull(mm)) {
-				mm = new MemoryManager(Strategy.FIRST_FIT);
-			}if(Objects.isNull(cm)) {
-				cm = new CpuManager();
-			}
-			return new Process();
-		}else if(type.equals(SystemCallType.WRITE_PROCESS)) {
-			//chama o mememory manager
-			mm.write(p);
-		}else if(type.equals(SystemCallType.READ_PROCESS)) {
-			return null;
-		}else if(type.equals(SystemCallType.READ_PROCESS)) {
-			return null;
+	public Process systemCall(SystemCallType type, Process p) {
+		switch (type) {
+			case CREATE_PROCESS:
+				createMemoryFirstFit();
+				return new Process();
+			case WRITE_PROCESS:
+				//chama o mememory manager
+				mm.write(p);
+				break;
+			case READ_PROCESS:
+				break;
 		}
 		return null;
+
+	}
+
+	private void createMemoryFirstFit(){//Criando MemoryManager e CpuManager se são nulos
+		if(Objects.isNull(mm)) {
+			mm = new MemoryManager(Strategy.FIRST_FIT);
+		}if(Objects.isNull(cm)) {
+			cm = new CpuManager();
+		}
 	}
 }
