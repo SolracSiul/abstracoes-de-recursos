@@ -16,7 +16,7 @@ public class MemoryManager {
 	}
 	public void write(Process p) {
 		if(strategy.equals(strategy.FIRST_FIT)){
-			this.myTeste();
+			this.worstFit();
 		}else if(strategy.equals(strategy.BEST_FIT)) {
 			this.writeUsingBestFit(p);
 		}else if(strategy.equals(strategy.WORST_FIT)) {
@@ -62,10 +62,20 @@ public class MemoryManager {
 		}
 		printMemoryStatus();
 	}
-	private void myTeste() {
-		System.out.println("meu teste:");
+	private void firstFit() {
+		System.out.println("new first fit: ");
 		Allocation a = new Allocation();
 		a.allocationWithFirstFit();		
+	}
+	private void bestFit() {
+		System.out.println("new bestFit: ");
+		Allocation a = new Allocation();
+		a.allocationWithBestFit();
+	}
+	private void worstFit() {
+		System.out.println("new worstFit: ");
+		Allocation a = new Allocation();
+		a.allocationWithWorstFit();
 	}
 	private void printMemoryStatus() {
 		System.out.println("MEMORIA ATUAL:\n");
@@ -75,10 +85,10 @@ public class MemoryManager {
 	}
 
 	private void writeUsingWorstFit(Process p) {
-		// TODO Auto-generated method stub
+		// done
 	}
 	private void writeUsingBestFit(Process p) {
-		// TODO Auto-generated method stub
+		// done
 	}
 
 }
