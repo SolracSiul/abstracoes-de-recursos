@@ -14,7 +14,7 @@ public class Allocation {
 	//List<NewProcess> process;
 	private List<Memory> memorias = Arrays.asList(new Memory(), new Memory(), new Memory());
 	
-	public void alocar() {
+	public void allocationWithFirstFit() {
 		for(NewProcess p : processos) {
 			for(Memory memoria : memorias) {
 				if(!memoria.isAlocado()) {

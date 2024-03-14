@@ -65,7 +65,7 @@ public class MemoryManager {
 	private void myTeste() {
 		System.out.println("meu teste:");
 		Allocation a = new Allocation();
-		a.alocar();		
+		a.allocationWithFirstFit();		
 	}
 	private void printMemoryStatus() {
 		System.out.println("MEMORIA ATUAL:\n");
