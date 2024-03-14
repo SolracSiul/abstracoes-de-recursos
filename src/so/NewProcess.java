@@ -30,8 +30,10 @@ public class NewProcess {
 		return id_newProcess;
 	}
 	private int generateRandomNumber(){
-		Random r = new Random();
-		return numbers.get(r.nextInt(numbers.size()));
+		int start = 1;
+		int end = 2800;
+		Random random = new Random();
+		return random.nextInt(end-start +1) + start;
 	}
 	
 	public void setId_newProcess(String id_newProcess) {

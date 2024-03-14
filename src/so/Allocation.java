@@ -16,23 +16,21 @@ public class Allocation {
 	
 	public void alocar() {
 		for(NewProcess p : processos) {
-			boolean alocado = false;
 			for(Memory memoria : memorias) {
-				if(!memoria.isAlocado() && memoria.getTamanho() >= p.getSize()) {
-					memoria.setAlocado(true);
-					memoria.setId_Process(p.getId_newProcess());
-					alocado = true;
-					System.out.println(memorias);
-					System.out.println("Processo: " + p.getName() + " alocado no bloco " + memoria.getId_memory());
-					break;
-				}
-				if(!alocado) {
-					System.out.println("Processo: " +p.getName() + " nao pode ser alocado");
-				}
+				if(!memoria.isAlocado()) {
+					if(memoria.getTamanho() >= p.getSize()) {
+						memoria.setAlocado(true);
+						memoria.setNomeDoProcesso(p.getName());
+						memoria.setTamanhoDoProcesso(p.getSize());
+						memoria.setId_Process(p.getId_newProcess());	
+						break;
+					}else {
+						System.out.println("Processo: " +p.getName() + " nao pode ser alocado tamanho : " + p.getSize());
+						break;
+					}
+				}				
 			}
 		}
-	}
-	
-	
-	
+		System.out.println(memorias);
+	}	
 }
