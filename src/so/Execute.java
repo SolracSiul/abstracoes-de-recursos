@@ -8,8 +8,10 @@ public class Execute {
 		Process p1 = systemOperation.systemCall(SystemCallType.CREATE_PROCESS, null);
 		systemOperation.systemCall(SystemCallType.WRITE_PROCESS, p1);
 		
-		Process p2 = systemOperation.systemCall(SystemCallType.CREATE_PROCESS, null);
-		 systemOperation.systemCall(SystemCallType.WRITE_PROCESS, p2);
+		/*
+		 * Process p2 = systemOperation.systemCall(SystemCallType.CREATE_PROCESS, null);
+		 * systemOperation.systemCall(SystemCallType.WRITE_PROCESS, p2);
+		 */
 		
 		/*Process p3 = systemOperation.systemCall(SystemCallType.CREATE_PROCESS, null);
 		systemOperation.systemCall(SystemCallType.WRITE_PROCESS, p3);

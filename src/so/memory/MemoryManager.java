@@ -1,10 +1,13 @@
 package so.memory;
+import so.Allocation;
+import so.NewProcess;
 import so.Process;
 
 public class MemoryManager {
 	private String[] memory;
 	private Strategy strategy;
-
+	private Allocation allocation;
+	
 	private static final String MSG_PROCESS = "\nProcess name : %s \n Process size: %d \n Process Id: %s \n" ;
 	
 	public MemoryManager(Strategy strategy) {
@@ -13,7 +16,7 @@ public class MemoryManager {
 	}
 	public void write(Process p) {
 		if(strategy.equals(strategy.FIRST_FIT)){
-			this.writeUsingFirstFit(p);
+			this.myTeste();
 		}else if(strategy.equals(strategy.BEST_FIT)) {
 			this.writeUsingBestFit(p);
 		}else if(strategy.equals(strategy.WORST_FIT)) {
@@ -58,6 +61,11 @@ public class MemoryManager {
 			}
 		}
 		printMemoryStatus();
+	}
+	private void myTeste() {
+		System.out.println("meu teste:");
+		Allocation a = new Allocation();
+		a.alocar();		
 	}
 	private void printMemoryStatus() {
 		System.out.println("MEMORIA ATUAL:\n");
