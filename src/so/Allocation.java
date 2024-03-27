@@ -5,16 +5,16 @@ import java.util.Arrays;
 import java.util.List;
 
 import so.memory.Memory;
+import so.utils.Log;
 
 public class Allocation {
-	//pegar um processo 
-	//pegar uma memória;
-	//retornar uma array informando em qual memoria o processo foi alocado;
+	
 	private List<NewProcess> processos = Arrays.asList(new NewProcess(), new NewProcess(), new NewProcess());
-	//List<NewProcess> process;
 	private List<Memory> memorias = Arrays.asList(new Memory(), new Memory(), new Memory());
 	
 	public void allocationWithFirstFit() {
+		int totalProcessSize = 0;
+		String idProcess = "";
 		for(NewProcess p : processos) {
 			for(Memory memoria : memorias) {
 				if(!memoria.isAlocado()) {
@@ -22,7 +22,9 @@ public class Allocation {
 						memoria.setAlocado(true);
 						memoria.setNomeDoProcesso(p.getName());
 						memoria.setTamanhoDoProcesso(p.getSize());
-						memoria.setId_Process(p.getId_newProcess());	
+						memoria.setId_Process(p.getId_newProcess());
+						totalProcessSize = p.getSize();
+						idProcess = p.getId_newProcess();
 						break;
 					}else {
 						System.out.println("Processo: " +p.getName() + " nao pode ser alocado tamanho : " + p.getSize());
@@ -31,7 +33,10 @@ public class Allocation {
 				}				
 			}
 		}
+		Log log = new Log(totalProcessSize, idProcess);
 		System.out.println(memorias);
+		log.showBit();
+		
 	}
 	public void allocationWithBestFit() {
 		int n = processos.size();

@@ -3,7 +3,7 @@ package so;
 
 public class Execute {
 	 public static void main(String[] args) {
-		 SystemOperation systemOperation = new SystemOperation(); //Criado system Operation
+		 SystemOperation systemOperation = new SystemOperation(); 
 
 		Process p1 = systemOperation.systemCall(SystemCallType.CREATE_PROCESS, null);
 		systemOperation.systemCall(SystemCallType.WRITE_PROCESS, p1);

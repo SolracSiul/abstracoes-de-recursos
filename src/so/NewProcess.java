@@ -14,7 +14,7 @@ public class NewProcess {
 	public List<String> processNames = Arrays.asList("Chrome", "Discord", "Firefox", "Steam", "Netflix", "LOL", "Valorant");
 	
 	public NewProcess() {
-		this.id_newProcess = generateId(); //Gerando id
+		this.id_newProcess = generateId(); 
 		this.size = generateRandomNumber();
 		this.name = generateCustomName();
 	}
@@ -31,7 +31,7 @@ public class NewProcess {
 	}
 	private int generateRandomNumber(){
 		int start = 1;
-		int end = 2800;
+		int end = 140;
 		Random random = new Random();
 		return random.nextInt(end-start +1) + start;
 	}

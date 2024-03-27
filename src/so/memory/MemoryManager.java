@@ -11,12 +11,13 @@ public class MemoryManager {
 	private static final String MSG_PROCESS = "\nProcess name : %s \n Process size: %d \n Process Id: %s \n" ;
 	
 	public MemoryManager(Strategy strategy) {
-		this.memory = new String[128]; //TAMANHO DA MEMORIA RAM
+		this.memory = new String[128];
 		this.strategy = strategy;
 	}
 	public void write(Process p) {
 		if(strategy.equals(strategy.FIRST_FIT)){
-			this.worstFit();
+			//aqui criamos um novo processo 
+			this.firstFit();
 		}else if(strategy.equals(strategy.BEST_FIT)) {
 			this.writeUsingBestFit(p);
 		}else if(strategy.equals(strategy.WORST_FIT)) {
@@ -34,7 +35,7 @@ public class MemoryManager {
 					break;
 				}
 				if(actualSize > 0) {
-					if(p.getSizeInMemory() <= actualSize) { //Se o tamanho do processo é menor ou igual a memoria ram
+					if(p.getSizeInMemory() <= actualSize) { 
 						int start = (i - actualSize);
 						/*int end = i;*/
 						for (int j = start; j < p.getSizeInMemory(); j++ ) {

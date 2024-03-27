@@ -16,7 +16,7 @@ public class Memory {
 		 this.alocado = false;
 		 this.id_Process = null;
 		 this.tamanhoDoProcesso = null;
-		 this.tamanho = generateRandomInt();
+		 this.tamanho = 128;
 		 this.nomeDoProcesso = null;
 	}
 
@@ -55,8 +55,9 @@ public class Memory {
 		return UUID.randomUUID().toString();
 	}
 	private static int generateRandomInt() {
+		//verificar se o tamnho da memoria deve ser 128 fixo ou ate 128
 		int start = 1;
-		int end = 2666;
+		int end = 129;
 		Random random = new Random();
 		return random.nextInt(end-start +1) + start;
 	}
