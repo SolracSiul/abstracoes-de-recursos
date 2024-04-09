@@ -41,6 +41,8 @@ public class Allocation {
 	public void allocationWithBestFit() {
 		int n = processos.size();
 		int m = memorias.size();
+		int totalProcessSize = 0;
+		String idProcess = "";
 		
 		int allocation[] = new int[n];
 		
@@ -62,6 +64,10 @@ public class Allocation {
 				memorias.get(bestIndex).setNomeDoProcesso(processos.get(i).getName());
 				memorias.get(bestIndex).setTamanhoDoProcesso(processos.get(i).getSize());
 				memorias.get(bestIndex).setId_Process(processos.get(i).getId_newProcess());
+				totalProcessSize = processos.get(i).getSize();
+				idProcess = processos.get(i).getId_newProcess();
+				Log log = new Log(totalProcessSize, idProcess);
+				log.showBit();
 			}
 		}
 		for(Memory memoria: memorias) {
@@ -71,7 +77,8 @@ public class Allocation {
 	public void allocationWithWorstFit() {
 		int n = processos.size();
         int m = memorias.size();
-
+        int totalProcessSize = 0;
+		String idProcess = "";
         int allocation[] = new int[n];
         for (int i = 0; i < allocation.length; i++) {
             allocation[i] = -1;
@@ -91,6 +98,10 @@ public class Allocation {
                 memorias.get(worstIndex).setNomeDoProcesso(processos.get(i).getName());
                 memorias.get(worstIndex).setTamanhoDoProcesso(processos.get(i).getSize());
                 memorias.get(worstIndex).setId_Process(processos.get(i).getId_newProcess());
+                totalProcessSize = processos.get(i).getSize();
+				idProcess = processos.get(i).getId_newProcess();
+                Log log = new Log(totalProcessSize, idProcess);
+				log.showBit();
             }
         }
         for (Memory memoria : memorias) {
