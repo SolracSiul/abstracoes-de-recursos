@@ -19,8 +19,7 @@ public class Execute {
 		
 		System.out.println("\n************************************************************");
 
-		Process p4 = (Process)SystemOperation.systemCall(SystemCallType.CREATE_PROCESS,40);
-		SystemOperation.systemCall(SystemCallType.WRITE_PROCESS, p4);
+		
 		 
 		 
 		/*Process p3 = systemOperation.systemCall(SystemCallType.CREATE_PROCESS, null);

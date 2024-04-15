@@ -84,7 +84,7 @@ public class MemoryManager {
 		}
 		return null;
 	}
-	private void delete(Process p) {
+	public void delete(Process p) {
 		List<FrameMemory> frames = (List<FrameMemory>) this.logicalMemory.get(p.getId());
 		for(int i = 0; i < frames.size();i++) {
 			FrameMemory actuallyFrame = frames.get(i);
@@ -109,8 +109,23 @@ public class MemoryManager {
 					this.logicalMemory.put(MSG_PROCESS, frame);
 				}
 			}
+		}else {
+			
 		}
+		SubProcess.count = 0;
 		this.printMemoryStatus();
+	};
+	public List<SubProcess> read(Process p){
+		List<String> ids = p.getProcesses();
+		List<SubProcess> sps = new LinkedList<>();
+		for(String id : ids) {
+			FrameMemory actuallyFrame = this.logicalMemory.get(id);
+			sps.add(this.physicMemory[actuallyFrame.getPageNumber()][actuallyFrame.getOffset()]);
+		}
+		return sps;
+	}
+	public void newDelete(Process p) {
+		return;
 	}
 	
 

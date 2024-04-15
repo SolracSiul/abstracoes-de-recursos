@@ -12,18 +12,23 @@ public class Process {
 	private int sizeInMemory;
 	private List<String> processes;
 	private  Integer count = 0;
+	private int timeToExecute;
+	private PriorityProcessType priorityType;
 	
 	public static final List<Integer> numbers = Arrays.asList(1, 2, 4, 6, 10, 20, 50, 100);
 
 	public List<String> processNames = Arrays.asList("Chrome", "Discord", "Firefox", "Steam", "Netflix", "LOL", "Valorant");
 
-	/*	private int timeToExecute;
-	private int priority;
-	private List<Process> processes;
-	private int instructions;*/
-	
 	public Process(int sizeMemory) {
 		count++;
+		Random rand = new Random();
+		
+		PriorityProcessType[] priorityList = PriorityProcessType.values();
+		this.priorityType = priorityList[rand.nextInt(priorityList.length)];
+		
+		
+		List<Integer> givenList = Arrays.asList(100,200,300,400,500,600,800,900,1000,2000);
+		this.timeToExecute = givenList.get(rand.nextInt(givenList.size()));
 		this.id = "P" + count;
 		this.sizeInMemory = sizeMemory;
 		this.processes = this.getProcesses();
@@ -66,5 +71,17 @@ public class Process {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public int getTimeToExecute() {
+		return timeToExecute;
+	}
+	public void setTimeToExecute(int timeToExecute) {
+		this.timeToExecute = timeToExecute;
+	}
+	public PriorityProcessType getPriorityType() {
+		return priorityType;
+	}
+	public void setPriorityType(PriorityProcessType priorityType) {
+		this.priorityType = priorityType;
 	}
 }
