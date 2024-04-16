@@ -10,7 +10,7 @@ import so.SubProcess;
 public class MemoryManager {
 	private Hashtable<String, FrameMemory> logicalMemory;
 	private SubProcess[][] physicMemory;
-	private String[] memory;
+	private String[] memoryss;
 	private Strategy strategy;
 	private Allocation allocation;
 	private int pageSize;
@@ -20,39 +20,18 @@ public class MemoryManager {
 	private static final String MSG_PROCESS = "\nProcess name : %s \n Process size: %d \n Process Id: %s \n" ;
 	
 	public MemoryManager(int memorySize, int pageSize) {
+		//4 linhas por pagina -> 4subProcess
 		this.pageSize = pageSize;
+		//quantidade total da memoria 256
 		this.sizeMemory = memorySize;
+		//pagina é 256/4 --- 64 paginas;
 		int pages = (int) Math.ceil(this.sizeMemory/this.pageSize);
+		//teremos 4 phisicMemory cada um com 64
 		this.physicMemory = new SubProcess[pages][pageSize];
 		this.logicalMemory = new Hashtable<>();
 	}
-	
-		
 	public void write(Process p) {
-		//if(strategy.equals(strategy.FIRST_FIT)){
-			//aqui criamos um novo processo 
-		//	this.firstFit();
-		//}else if(strategy.equals(strategy.BEST_FIT)) {
-		//	this.writeUsingBestFit(p);
-		//}else if(strategy.equals(strategy.WORST_FIT)) {
-		//	this.writeUsingWorstFit(p);
-		//}
 		this.writeUsingPaging(p);
-	}
-	private void firstFit() {
-		System.out.println("new first fit: ");
-		Allocation a = new Allocation();
-		a.allocationWithFirstFit();		
-	}
-	private void bestFit() {
-		System.out.println("new bestFit: ");
-		Allocation a = new Allocation();
-		a.allocationWithBestFit();
-	}
-	private void worstFit() {
-		System.out.println("new worstFit: ");
-		Allocation a = new Allocation();
-		a.allocationWithWorstFit();
 	}
 	private void printMemoryStatus() {
 		for(int i = 0; i <this.physicMemory.length; i++) {
@@ -71,13 +50,13 @@ public class MemoryManager {
 		}
 	}
 
-	private List<FrameMemory> getFrames(Process p){
+	private List<FrameMemory> getFrames(Process processo){
 		List<FrameMemory> frames = new LinkedList<>();
-		int numOfPages = (int) Math.ceil(p.getSizeInMemory()/this.pageSize);
+		int numOfPagesProcesss = (int) Math.ceil(processo.getSizeInMemory()/this.pageSize);
 		for(int frame = 0; frame < this.physicMemory.length; frame++) {
 			if(this.physicMemory[frame][0]== null) {
 				frames.add(new FrameMemory(frame));
-				if(frames.size()== numOfPages) {
+				if(frames.size()== numOfPagesProcesss) {
 					return frames;
 				}
 			};
@@ -98,7 +77,9 @@ public class MemoryManager {
 	private void writeUsingPaging(Process p) {
 		List<FrameMemory> frames = this.getFrames(p);
 		if(frames != null) {
+			//fazendo for na quantidade de paginas que será necessaria para o processo
 			for(int i =0; i< frames.size(); i++) {
+				//fazendo for na quantidade de subprocessos na pagina
 				for(int offset = 0; offset < this.pageSize; offset++) {
 					FrameMemory frame = frames.get(i);
 					//atualiza memoria fisica

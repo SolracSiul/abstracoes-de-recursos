@@ -16,6 +16,8 @@ public class SystemOperation {
 	public static Process systemCall(SystemCallType type, int sizeInMemory) {
 		if(type.equals(SystemCallType.CREATE_PROCESS)) {
 			if(Objects.isNull(mm)) {
+				//pageNumber = 256 paginas
+				//ofset = cada pagina 4 subprocess;
 				mm = new MemoryManager(256,4);
 			}if(Objects.isNull(scheduler)) {
 				scheduler = new FCFS();

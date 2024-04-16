@@ -10,7 +10,7 @@ public class CpuManager {
 	private Core[] cores;
 	
 	public static int CAPACITY= 7;
-	public static int NUM_OF_CORES =4;
+	public static int NUM_OF_CORES =2;
 	public static int CLOCK = 5000;
 	
 	public CpuManager() {

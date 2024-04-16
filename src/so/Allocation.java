@@ -4,7 +4,7 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
-import so.memory.Memory;
+import so.old.Memory;
 import so.utils.Log;
 
 public class Allocation {
