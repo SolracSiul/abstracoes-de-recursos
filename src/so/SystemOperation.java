@@ -2,6 +2,7 @@ package so;
 
 import so.cpu.CpuManager;
 import so.memory.MemoryManager;
+import so.memory.NewMemoryManager;
 import so.memory.Strategy;
 import so.scheduler.FCFS;
 import so.scheduler.Scheduler;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class SystemOperation {
-	public static MemoryManager mm;
+	public static NewMemoryManager mm;
 	public static Scheduler scheduler;
 	
 	public static Process systemCall(SystemCallType type, int sizeInMemory) {
@@ -18,7 +19,7 @@ public class SystemOperation {
 			if(Objects.isNull(mm)) {
 				//pageNumber = 256 paginas
 				//ofset = cada pagina 4 subprocess;
-				mm = new MemoryManager(256,4);
+				mm = new NewMemoryManager(256,4);
 			}if(Objects.isNull(scheduler)) {
 				scheduler = new FCFS();
 			}
@@ -30,12 +31,13 @@ public class SystemOperation {
 	public static List<SubProcess> systemCall(SystemCallType type, Process p) {
 		if(type.equals(SystemCallType.WRITE_PROCESS)) {
 			mm.write(p);
-			scheduler.execute(p);
+			mm.printMemory();
+			//scheduler.execute(p);
 		}else if(type.equals(SystemCallType.CLOSE_PROCESS)) {
-			mm.delete(p);
+			//mm.delete(p);
 			scheduler.finish(p);
 		}else if(type.equals(SystemCallType.READ_PROCESS)) {
-			return mm.read(p);
+			//return mm.read(p);
 		}
 		return null;
 	}
