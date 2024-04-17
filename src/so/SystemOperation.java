@@ -4,7 +4,6 @@ import so.cpu.CpuManager;
 import so.memory.MemoryManager;
 import so.memory.NewMemoryManager;
 import so.memory.Strategy;
-import so.scheduler.FCFS;
 import so.scheduler.Scheduler;
 
 import java.util.List;
@@ -21,7 +20,7 @@ public class SystemOperation {
 				//ofset = cada pagina 4 subprocess;
 				mm = new NewMemoryManager(256,4);
 			}if(Objects.isNull(scheduler)) {
-				scheduler = new FCFS();
+				//scheduler = new RoundRobin();
 			}
 		}
 		return new Process(sizeInMemory);
@@ -32,10 +31,11 @@ public class SystemOperation {
 		if(type.equals(SystemCallType.WRITE_PROCESS)) {
 			mm.write(p);
 			mm.printMemory();
+			//scheduler = new RoundRobin();
 			//scheduler.execute(p);
 		}else if(type.equals(SystemCallType.CLOSE_PROCESS)) {
 			//mm.delete(p);
-			scheduler.finish(p);
+			//scheduler.finish(p);
 		}else if(type.equals(SystemCallType.READ_PROCESS)) {
 			//return mm.read(p);
 		}

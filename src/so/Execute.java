@@ -17,6 +17,7 @@ public class Execute {
 		
 		SystemOperation.systemCall(SystemCallType.WRITE_PROCESS, p1);
 		SystemOperation.systemCall(SystemCallType.WRITE_PROCESS, p2);
+		SystemOperation.systemCall(SystemCallType.WRITE_PROCESS, p3);
 
 
 		//List<SubProcess> sps = SystemOperation.systemCall(SystemCallType.WRITE_PROCESS, p1);

@@ -1,24 +1,32 @@
 package so.memory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import so.Process;
 import so.SubProcess;
+import so.SystemOperation;
+import so.scheduler.Scheduler;
 
 public class NewMemoryManager {
 
 	private PhysicMemory physicMemory;
-
+	private List<Process> processes;
 	private static final String MSG_PROCESS = "\nProcess name : %s \n Process size: %d \n Process Id: %s \n";
+	private Scheduler scheduler;
 
 	public NewMemoryManager(int totalSize, int qntSubProcessPerPage) {
 
 		this.physicMemory = new PhysicMemory(totalSize, qntSubProcessPerPage);
-
+		this.processes = new ArrayList<>(); 
 	}
 
 	public void write(Process process) {
+		processes.add(process);
+		this.scheduler = new Scheduler(processes); 
+		
 		Integer qntPagesProcessUsing = getQntPagesProcessGoingUse(process);
 		Integer processWriten = 0;
-
 		for (Block block : physicMemory.getBlocksOfMemory()) {
 			if (!block.getUsed()) {
 				//percorre as pagidas do bloco
@@ -34,14 +42,11 @@ public class NewMemoryManager {
 					}
 				block.setUsed(Boolean.TRUE);
 				break;
-				}
-				
-				
-				
+				}						
 			}
-		}
 	
-
+		 
+		}
 	
 
 	public Integer getQntPagesProcessGoingUse(Process process) {
@@ -86,10 +91,10 @@ public class NewMemoryManager {
 					}
 					
 				}
-			}
-			System.out.println("Print de bloco finalizado");
+			}			
 		}
-		System.out.println("Finalizado print da memoria");
+		 Scheduler sc = new Scheduler(processes);
+		
 	}
 	
 
