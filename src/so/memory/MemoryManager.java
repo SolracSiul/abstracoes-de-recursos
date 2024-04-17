@@ -31,7 +31,7 @@ public class MemoryManager {
 		this.logicalMemory = new Hashtable<>();
 	}
 	public void write(Process p) {
-		this.writeUsingPaging(p);
+//		this.writeUsingPaging(p);
 	}
 	private void printMemoryStatus() {
 		for(int i = 0; i <this.physicMemory.length; i++) {
@@ -50,19 +50,19 @@ public class MemoryManager {
 		}
 	}
 
-	private List<FrameMemory> getFrames(Process processo){
-		List<FrameMemory> frames = new LinkedList<>();
-		int numOfPagesProcesss = (int) Math.ceil(processo.getSizeInMemory()/this.pageSize);
-		for(int frame = 0; frame < this.physicMemory.length; frame++) {
-			if(this.physicMemory[frame][0]== null) {
-				frames.add(new FrameMemory(frame));
-				if(frames.size()== numOfPagesProcesss) {
-					return frames;
-				}
-			};
-		}
-		return null;
-	}
+//	private List<FrameMemory> getFrames(Process processo){
+//		List<FrameMemory> frames = new LinkedList<>();
+//		int numOfPagesProcesss = (int) Math.ceil(processo.getSizeInMemory()/this.pageSize);
+//		for(int frame = 0; frame < this.physicMemory.length; frame++) {
+//			if(this.physicMemory[frame][0]== null) {
+//				frames.add(new FrameMemory(frame));
+//				if(frames.size()== numOfPagesProcesss) {
+//					return frames;
+//				}
+//			};
+//		}
+//		return null;
+//	}
 	public void delete(Process p) {
 		List<FrameMemory> frames = (List<FrameMemory>) this.logicalMemory.get(p.getId());
 		for(int i = 0; i < frames.size();i++) {
@@ -74,28 +74,28 @@ public class MemoryManager {
 		this.logicalMemory.remove(p.getId());
 	}
 	
-	private void writeUsingPaging(Process p) {
-		List<FrameMemory> frames = this.getFrames(p);
-		if(frames != null) {
-			//fazendo for na quantidade de paginas que será necessaria para o processo
-			for(int i =0; i< frames.size(); i++) {
-				//fazendo for na quantidade de subprocessos na pagina
-				for(int offset = 0; offset < this.pageSize; offset++) {
-					FrameMemory frame = frames.get(i);
-					//atualiza memoria fisica
-					SubProcess sp = new SubProcess(p.getId(),NUM_OF_INSTRUCTIONS_PER_SUB_PROCESS );
-					this.physicMemory[frame.getPageNumber()][offset]= sp;
-					//atualiza memoria logica
-					frame.setOffset(offset);
-					this.logicalMemory.put(MSG_PROCESS, frame);
-				}
-			}
-		}else {
-			
-		}
-		SubProcess.count = 0;
-		this.printMemoryStatus();
-	};
+//	private void writeUsingPaging(Process p) {
+//		List<FrameMemory> frames = this.getFrames(p);
+//		if(frames != null) {
+//			//fazendo for na quantidade de paginas que será necessaria para o processo
+//			for(int i =0; i< frames.size(); i++) {
+//				//fazendo for na quantidade de subprocessos na pagina
+//				for(int offset = 0; offset < this.pageSize; offset++) {
+//					FrameMemory frame = frames.get(i);
+//					//atualiza memoria fisica
+//					SubProcess sp = new SubProcess(p.getId(),NUM_OF_INSTRUCTIONS_PER_SUB_PROCESS );
+//					this.physicMemory[frame.getPageNumber()][offset]= sp;
+//					//atualiza memoria logica
+//					frame.setOffset(offset);
+//					this.logicalMemory.put(MSG_PROCESS, frame);
+//				}
+//			}
+//		}else {
+//			
+//		}
+//		SubProcess.count = 0;
+//		this.printMemoryStatus();
+//	};
 	public List<SubProcess> read(Process p){
 		List<String> ids = p.getProcesses();
 		List<SubProcess> sps = new LinkedList<>();

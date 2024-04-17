@@ -11,7 +11,7 @@ public class PhysicMemory {
 	
 	private Integer qntSubProcessPerPage = 0;
 	
-	private List<Page> pagesMemory = new ArrayList<>();
+	private List<Block> blocksOfMemory = new ArrayList<>();
 	
 	
 	public PhysicMemory(Integer totalSize,Integer qntSubProcessPerPage) {
@@ -19,6 +19,9 @@ public class PhysicMemory {
 		this.qntPages = pages;
 		this.totalSize = totalSize;
 		this.qntSubProcessPerPage = qntSubProcessPerPage;
+		for(int i = 0; i < qntSubProcessPerPage; i++) {
+			blocksOfMemory.add(new Block(pages,"BL-" + String.valueOf(i)));
+		}
 	}
 
 
@@ -52,14 +55,17 @@ public class PhysicMemory {
 	}
 
 
-	public List<Page> getPagesMemory() {
-		return pagesMemory;
+	public List<Block> getBlocksOfMemory() {
+		return blocksOfMemory;
 	}
 
 
-	public void setPagesMemory(List<Page> pagesMemory) {
-		this.pagesMemory = pagesMemory;
+	public void setBlocksOfMemory(List<Block> blocksOfMemory) {
+		this.blocksOfMemory = blocksOfMemory;
 	}
+
+
+
 	
 	
 	
