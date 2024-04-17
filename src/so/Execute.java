@@ -15,6 +15,8 @@ public class Execute {
 		
 		NewMemoryManager manager = new NewMemoryManager(256,4);
 		manager.write(p1);
+		manager.write(p2);
+		manager.write(p3);
 		manager.printMemory();
 		
 		

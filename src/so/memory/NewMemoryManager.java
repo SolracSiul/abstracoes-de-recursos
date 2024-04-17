@@ -32,11 +32,12 @@ public class NewMemoryManager {
 							}
 						}
 					}
-				}
-				System.out.println(physicMemory);
-				System.out.println("Terminou");
 				block.setUsed(Boolean.TRUE);
 				break;
+				}
+				
+				
+				
 			}
 		}
 	
@@ -86,6 +87,7 @@ public class NewMemoryManager {
 					
 				}
 			}
+			System.out.println("Print de bloco finalizado");
 		}
 		System.out.println("Finalizado print da memoria");
 	}
