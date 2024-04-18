@@ -14,19 +14,14 @@ public class Scheduler {
     private List<Process> processes = new ArrayList<>();
     private RoundRobin rr;
     private List<Integer> lista = new ArrayList<>();
-    private NewRoundRobin nrr;
     private Logger logger = new SimpleLogger();
         
     public Scheduler(List<Process> processes) {
         this.cm = new CpuManager();
         this.processes = processes;
-        this.nrr = new NewRoundRobin(this, logger);
         
-        //mostrarListaDoSchedule();
-        for (int i = 0; i< 90; i ++) {
-        	queue();
+        queue();
 
-        }
     };
    
     private static boolean todosZeros(List<Integer> lista) {
@@ -39,7 +34,7 @@ public class Scheduler {
     }
     
     public void queue() {
-    	nrr.executarAlgoritmo();
+    	NewRoundRobin.executarAlgoritmo(logger, processes);
     }
     
     public void execute(Block b) {
