@@ -67,23 +67,23 @@ public class NewMemoryManager {
 	public void printMemory() {
 		for (Block block : physicMemory.getBlocksOfMemory()) {
 			if(block.getUsed()) {
-				System.out.println("Bloco - " + block.getId());
-				System.out.println("------------------------");
+//				System.out.println("Bloco - " + block.getId());
+//				System.out.println("------------------------");
 				Integer contadorPagina = 1;
 				for (Page page : block.getPages()) {
-					System.out.println("------------");
+//					System.out.println("------------");
 					Integer contadorPrint = 0;
 					
 					for (int i = 0; i < physicMemory.getQntSubProcessPerPage();i++) {
 						if(i >= page.getQntSubProcess()) {
-							System.out.print("null |" );
+//							System.out.print("null |" );
 						}else {
-							System.out.print(page.getSubProcesses().get(i).getId() + " | ");
+//							System.out.print(page.getSubProcesses().get(i).getId() + " | ");
 						}
 						contadorPrint = contadorPrint + 1;
 						if(contadorPrint == 4) {
-							System.out.print("PG - " + contadorPagina);
-							System.out.println("");
+//							System.out.print("PG - " + contadorPagina);
+//							System.out.println("");
 							contadorPrint = 1;
 							contadorPagina = contadorPagina + 1;
 						}

@@ -1,33 +1,45 @@
 package so.scheduler;
 
-import so.cpu.CpuManager;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
 
 import so.Process;
-import so.memory.*;
+import so.cpu.CpuManager;
+import so.memory.Block;
+import so.utils.Logger;
+import so.utils.SimpleLogger;
 
 public class Scheduler {
     private CpuManager cm;
     private List<Process> processes = new ArrayList<>();
     private RoundRobin rr;
     private List<Integer> lista = new ArrayList<>();
-    
+    private NewRoundRobin nrr;
+    private Logger logger = new SimpleLogger();
+        
     public Scheduler(List<Process> processes) {
         this.cm = new CpuManager();
         this.processes = processes;
-        this.rr = new RoundRobin();
+        this.nrr = new NewRoundRobin(this, logger);
         
-        mostrarListaDoSchedule();
-        queue();
-    }
+        //mostrarListaDoSchedule();
+        for (int i = 0; i< 90; i ++) {
+        	queue();
 
+        }
+    };
+   
+    private static boolean todosZeros(List<Integer> lista) {
+        for (int elemento : lista) {
+            if (elemento != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
     public void queue() {
-        rr.roundRobin(lista);
+    	nrr.executarAlgoritmo();
     }
     
     public void execute(Block b) {

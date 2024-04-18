@@ -11,6 +11,7 @@ public class RoundRobin {
     private static final int CLOCK = 500; // Tempo de cada clock em milissegundos
     private static final int QUANTUM = 1000; // Tempo de quantum em milissegundos
 
+ 
     public RoundRobin(List<Integer> processes) {
     }
 

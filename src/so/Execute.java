@@ -11,7 +11,7 @@ public class Execute {
 		
 		Process p2 = (Process)SystemOperation.systemCall(SystemCallType.CREATE_PROCESS,90);
 		Process p3 = (Process)SystemOperation.systemCall(SystemCallType.CREATE_PROCESS,34);
-		Process p4 = (Process)SystemOperation.systemCall(SystemCallType.CREATE_PROCESS,58);
+		
 		
 
 		

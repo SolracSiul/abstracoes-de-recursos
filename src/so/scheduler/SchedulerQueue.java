@@ -41,18 +41,18 @@ public  class SchedulerQueue extends Scheduler {
 //		}
 //	}
 
-	@Override
-	public void execute(Block b) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void finish(Block b) {
-		// TODO Auto-generated method stub
-		
-	}
-	
+//	@Override
+//	public void execute(Block b) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	@Override
+//	public void finish(Block b) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//	
 
 
 	
